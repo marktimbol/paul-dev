@@ -43,4 +43,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return ucfirst($this->firstName) . ' ' . $this->lastName;
     }
+
+    public function skills()
+    {
+        return $this->hasMany(App\Skill::class);
+    }
 }
