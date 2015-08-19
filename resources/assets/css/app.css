@@ -6029,5 +6029,8 @@ body {
       float: right; }
   .profile-overview .well .well-content {
     padding-bottom: 30px; }
+  .profile-overview .well ul {
+    padding-left: 15px;
+    margin-top: 20px; }
 
 /*# sourceMappingURL=app.css.map */

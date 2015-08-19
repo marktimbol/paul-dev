@@ -39,7 +39,7 @@ class AuthController extends Controller
     	if( Auth::attempt($credentials, $request->has('remember')) )
     	{
             flash()->success('Hi, again!', 'You are now logged in.');
-    	    return redirect()->route('profile');
+    	    return redirect()->intended('profile');
     	}
 
     	return redirect()->back()->withErrors(["The email and password didn't match our records."]);

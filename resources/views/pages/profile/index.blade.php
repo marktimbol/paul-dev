@@ -13,7 +13,7 @@
 						<div class="row">
 							<div class="col-md-3">
 								<div class="profile-picture">
-									<img src="http://placehold.it/150x150" alt="{{ $currentUser->fullName }}" title="{{ $currentUser->fullName }}" class="img-responsive" />
+									{!! Html::image(asset('images/default.png'), $currentUser->fullName, ['class' => 'img-responsive']) !!}
 								</div>
 							</div>
 

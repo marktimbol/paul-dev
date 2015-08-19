@@ -14,5 +14,17 @@ Route::get('auth/logout', 'AuthController@getLogout');
 Route::get('auth/register', 'AuthController@getRegister');
 Route::post('auth/register', 'AuthController@postRegister');
 
-Route::get('profile', ['as' => 'profile', 'uses' => 'ProfileController@index']);
-Route::get('profile/edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+Route::group(['middleware' => 'auth'], function(){
+
+	Route::resource('profile', 'ProfileController');
+
+	Route::group(['prefix' => 'profile'], function(){
+		Route::resource('skills', 'SkillsController');
+		Route::resource('work-experiences', 'WorkExperiencesController');
+		Route::resource('educations', 'EducationsController');
+	});
+
+});
+
+
+
