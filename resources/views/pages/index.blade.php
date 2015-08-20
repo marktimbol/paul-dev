@@ -6,15 +6,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="jumbotron">
-				<div class="col-md-6 col-md-offset-3">
-					<h2 class="text-center">The #1 destination to hire freelance talent on demand</h2>
+				<div class="col s12 m6 offset-m3">
+					<h2 class="center-align">The #1 destination to hire freelance talent on demand</h2>
 					<div class="row">
-						<div class="col-md-6">
-							<a href="/auth/register" class="btn btn-success btn-lg btn-block">Post Your Job<br /><span>It's FREE</span></a>
+						<div class="col s12 m6">
+							<a href="/auth/register" class="btn  waves-effect waves-light btn-large left">Post Your Job <span>It's FREE</span></a>
 						</div>
 
-						<div class="col-md-6">
-							<a href="/auth/register" class="btn btn-primary btn-lg btn-block">Find a Job<br /><span>Become a Freelancer</span></a>
+						<div class="col s12 m6">
+							<a href="/auth/register" class="btn blue waves-effect waves-light btn-large right">Become a Freelancer</a>
 						</div>
 					</div>
 				</div>

@@ -16,13 +16,15 @@ elixir(function(mix) {
     	
     	.styles([
             '../bower_components/sweetalert/dist/sweetalert.css',
+            '../bower_components/materialize/dist/css/materialize.css',
             '../bower_components/components-font-awesome/css/font-awesome.css',
     		'app.css'
     	], 'public/css/all.css')
 
     	.scripts([
     	   '../bower_components/jquery/dist/jquery.js',
-    	   '../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+           '../bower_components/materialize/dist/js/materialize.min.js',
+    	   //'../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
            '../bower_components/sweetalert/dist/sweetalert.min.js',
             'app.js'
     	], 'public/js/all.js')

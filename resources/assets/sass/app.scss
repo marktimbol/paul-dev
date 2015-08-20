@@ -1,7 +1,9 @@
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+$themeColor: #00B6DE;
+
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 body {
-	padding-top: 70px;
+	//padding-top: 70px;
 }
 
 .float-right {
@@ -12,6 +14,10 @@ body {
 	width: 100%;
 }
 
+.input-field {
+	margin-bottom: 20px;
+}
+
 .page1 {
 	background: url('../../images/people.jpg') center bottom no-repeat;
 	padding: 50px 0 400px 0;
@@ -20,8 +26,7 @@ body {
 		padding: 0;
 		background: none;
 		h2 {
-			font-weight: bold;
-			font-size: 30px;
+			font-size: 40px;
 			margin-bottom: 20px;
 		}
 
@@ -29,6 +34,10 @@ body {
 			span {
 				font-size: 12px;
 			}
+		}
+
+		.btn {
+			width: 100%;
 		}
 	}		
 }
@@ -38,28 +47,20 @@ body {
 		margin-top: 0;
 	}
 
-	.well {
-		overflow: hidden;
-		.well-title-container {
-			overflow: hidden;
-			border-bottom: 1px solid #ddd;
-			padding-bottom: 5px;
-			.well-title {
-				margin-top: 0;
-				float: left;
-			}
-			a { //add button
-				float: right;
-			}
-		}
-
-		.well-content {
-			padding-bottom: 30px;
-		}
-
+	.card {
 		ul {
-			padding-left: 15px;
-			margin-top: 20px;		
+			overflow: hidden;
+			li {
+				button {
+				    padding: 3px 8px;
+				}
+			}
+			&.workExperiences {
+				li {
+					overflow: hidden;
+					margin-bottom: 15px;
+				}
+			}
 		}
 	}
 }

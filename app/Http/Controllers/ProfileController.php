@@ -20,7 +20,15 @@ class ProfileController extends Controller
 
     public function index()
     {
-    	$currentUser = $this->currentUser;
+        //$currentUser = $this->currentUser;
+        $currentUser = User::with(['skills' => function($query) {
+            $query->orderBy('created_at', 'desc');
+        }, 'workExperiences' => function($query){
+            $query->orderBy('created_at', 'desc'); 
+        }, 'educations' => function($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->findOrFail(Auth::user()->id);
+      
     	return view('pages.profile.index', compact('currentUser'));
     }
 
@@ -36,6 +44,8 @@ class ProfileController extends Controller
             $query->orderBy('created_at', 'desc');
         }, 'workExperiences' => function($query){
             $query->orderBy('created_at', 'desc'); 
+        }, 'educations' => function($query) {
+            $query->orderBy('created_at', 'desc');
         }])->findOrFail(Auth::user()->id);
       
         return view('pages.profile.edit', compact('currentUser'));

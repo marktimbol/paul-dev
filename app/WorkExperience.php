@@ -21,3 +21,4 @@ class WorkExperience extends Model
     	return $this->belongsTo('App\User');
     }
 }
+ 

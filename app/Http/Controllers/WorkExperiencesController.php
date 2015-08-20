@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\WorkExperience;
+use App\Repositories\Experiences\WorkExperienceRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,11 +12,13 @@ class WorkExperiencesController extends Controller
 {
 
     protected $currentUser;
+    protected $workExperience;
 
-    public function __construct()
+    public function __construct(WorkExperienceRepositoryInterface $workExperience)
     {
         $this->middleware('auth');
         $this->currentUser = Auth::user();
+        $this->workExperience = $workExperience;
     }
     /**
      * Display a listing of the resource.
@@ -46,20 +48,22 @@ class WorkExperiencesController extends Controller
      */
     public function store(Request $request)
     {
-        $newExperience = new WorkExperience([
-            'companyName' => $request->companyName,
-            'website' => $request->website,
-            'startDate'   => $request->startDate,
-            'endDate'     => $request->endDate,
+        $data = [
+            'companyName'   => $request->companyName,
+            'website'       => $request->website,
+            'startDate'     => $request->startDate,
+            'endDate'       => $request->endDate,
             'description'   => $request->description,
             'isPresent'     => $request->has('isPresent')
-            ]);
+            ];
 
-        $this->currentUser->workExperiences()->save($newExperience);
+        dd($data);
+
+        $this->workExperience->store($this->currentUser, $data);
 
         flash()->success('Yey!', 'New experience has been added.');
 
-        return redirect()->route('profile.edit');
+       return redirect()->route('profile.index');
     }
 
     /**
@@ -104,6 +108,10 @@ class WorkExperiencesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->workExperience->destroy($id);
+
+        flash()->info('Yay!', 'Work Experience has been success removed.');
+
+        return redirect()->route('profile.index');        
     }
 }

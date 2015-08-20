@@ -1,22 +1,13 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			@if( Auth::check() )
-				<a class="navbar-brand" href="{{ route('profile') }}">Paul</a>
-			@else
-				<a class="navbar-brand" href="/">Paul</a>
-			@endif
-			
-		</div>
 
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
+<nav class="top-nav">
+	<div class="container">
+		<div class="nav-wrapper">
+			@if( Auth::check() )
+				<a class="brand-logo" href="{{ route('profile.index') }}">Paul</a>
+			@else
+				<a class="brand-logo" href="/">Paul</a>
+			@endif	
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li><a href="#">Helpdesk</a></li>
 				<li><a href="#">Browse Jobs</a></li>
 				<li><a href="#">Blog</a></li>
@@ -40,5 +31,5 @@
 				@endif
 			</ul>
 		</div>
-  	</div>
+	</div>
 </nav>

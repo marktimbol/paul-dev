@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Repositories\Skills\SkillRepositoryInterface;
 use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as Auth;
@@ -12,11 +13,13 @@ class SkillsController extends Controller
 {
 
     protected $currentUser;
+    protected $skill;
 
-    public function __construct()
+    public function __construct(SkillRepositoryInterface $skill)
     {
         $this->middleware('auth');
         $this->currentUser = Auth::user();
+        $this->skill = $skill;
     }
     /**
      * Display a listing of the resource.
@@ -46,17 +49,17 @@ class SkillsController extends Controller
      */
     public function store(Request $request)
     {
-        $newSkill = new Skill([
+        $data = [
             'title' => $request->title,
             'years_of_experience' => $request->years_of_experience,
             'description'   => $request->description
-            ]);
+            ];
 
-        $this->currentUser->skills()->save($newSkill);
+        $this->skill->store($this->currentUser, $data);
 
         flash()->success('Yey!', 'New skill has been added.');
 
-        return redirect()->route('profile.edit');
+        return redirect()->route('profile.index');
     }
 
     /**
@@ -101,6 +104,10 @@ class SkillsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->skill->destroy($id);
+
+        flash()->info('Yay!', 'Skill has been success removed.');
+
+        return redirect()->route('profile.index');
     }
 }

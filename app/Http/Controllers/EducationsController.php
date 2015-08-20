@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Education;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Repositories\Educations\EducationRepositoryInterface;
 
 class EducationsController extends Controller
 {
+
+    protected $currentUser;
+    protected $education;
+
+    public function __construct(EducationRepositoryInterface $education)
+    {
+        $this->middleware('auth');
+        $this->currentUser = Auth::user();
+        $this->education = $education;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +50,18 @@ class EducationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'degree'            => $request->degree,
+            'specialization'    => $request->specialization,
+            'institute'         => $request->institute,
+            'yearOfCompletion'  => $request->yearOfCompletion
+            ];
+
+        $this->education->store($this->currentUser, $data);
+
+        flash()->success('Yey!', 'New education has been added.');
+
+        return redirect()->route('profile.index');
     }
 
     /**
@@ -82,6 +106,10 @@ class EducationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->education->destroy($id);
+
+        flash()->info('Yay!', 'Education has been success removed.');
+
+        return redirect()->route('profile.index');
     }
 }

@@ -4,35 +4,33 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col m6 offset-m3">
 				<h2 class="text-center">Log in to your Account</h2>
-				{!! Form::open() !!}
-				<div class="form-group">
-					{!! Form::label('email') !!}
-					{!! Form::email('email', null, ['class' => 'form-control']) !!}
-				</div>
 
-				<div class="form-group">
-					{!! Form::label('password') !!}
-					{!! Form::password('password', ['class' => 'form-control']) !!}
-				</div>
+				<div class="row">
+					{!! Form::open() !!}
+					<div class="input-field col s12 m12">
+						{!! Form::email('email', null, ['class' => 'validate']) !!}
+						{!! Form::label('email') !!}
+					</div>
 
-				<div class="checkbox">
-					<label>
-						{!! Form::checkbox('remember', 1, 0, []) !!} Remember me
-					</label>
-				</div>	
-				<hr />
+					<div class="input-field col s12 m12">
+						{!! Form::password('password', ['class' => 'validate']) !!}
+						{!! Form::label('password') !!}
+					</div>
 
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md-4 float-right">
-							{!! Form::submit('Log in',['class' => 'btn btn-success btn-lg btn-block']) !!}
-						</div>	
+				
+					<div class="col s12 m12">
+						{!! Form::checkbox('remember', 1, 0, ['id' => 'filled-in-box', 'class' => 'filled-in']) !!}
+						{!! Form::label('filled-in-box', 'Remember Me') !!}
+					</div>
+					
+					<div class="divider"></div>
+
+					<div class="input-field col s12 m4 right right-align">
+						<button type="submit" name="submit" class="btn waves-effect waves-light btn-large btn-block">Login</button>
 					</div>
 				</div>
-
-
 
 				@include('partials.errors')			
 

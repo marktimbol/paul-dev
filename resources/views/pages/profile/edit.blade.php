@@ -29,7 +29,7 @@
 							</div>
 						</div>
 					</div>	
-				</div>
+			</div>
 
 				<hr />
 
@@ -53,7 +53,7 @@
 								<div class="well">
 									<div class="well-title-container">
 										<h4 class="well-title">My Skills <span></span></h4>
-										<a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#AddSkillModal">Add</a>
+										<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#AddSkillModal">Add</button>
 									</div>
 									<div class="well-content">
 										<ul class="skills">
@@ -69,7 +69,7 @@
 								<div class="well">
 									<div class="well-title-container">
 										<h4 class="well-title">My Employment <span></span></h4>
-										<a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#AddExperienceModal">Add</a>
+										<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#AddExperienceModal">Add</button>
 									</div>
 
 									<div class="well-content">
@@ -86,11 +86,15 @@
 								<div class="well">
 									<div class="well-title-container">
 										<h4 class="well-title">My Education <span></span></h4>
-										<a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addEducationModal">Add</a>
+										<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#AddEducationsModal">Add</button>
 									</div>
 
 									<div class="well-content">
-
+										<ul class="educations">
+											@foreach( $currentUser->educations as $education )
+												<li>{{ $education->degree }}</li>
+											@endforeach
+										</ul>
 									</div>
 								</div>
 							</div>														
