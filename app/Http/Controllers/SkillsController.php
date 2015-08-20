@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\AddSkillRequest;
 use App\Repositories\Skills\SkillRepositoryInterface;
-use App\Skill;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as Auth;
 
 class SkillsController extends Controller
@@ -44,10 +43,10 @@ class SkillsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  AddSkillRequest  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(AddSkillRequest $request)
     {
         $data = [
             'title' => $request->title,

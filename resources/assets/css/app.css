@@ -26,8 +26,6 @@
 
 .profile-overview .card ul {
   overflow: hidden; }
-  .profile-overview .card ul li button {
-    padding: 3px 8px; }
   .profile-overview .card ul.workExperiences li {
     overflow: hidden;
     margin-bottom: 15px; }

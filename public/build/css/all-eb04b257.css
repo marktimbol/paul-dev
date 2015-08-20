@@ -11126,8 +11126,6 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .profile-overview .card ul {
   overflow: hidden; }
-  .profile-overview .card ul li button {
-    padding: 3px 8px; }
   .profile-overview .card ul.workExperiences li {
     overflow: hidden;
     margin-bottom: 15px; }

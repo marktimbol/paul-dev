@@ -13,13 +13,13 @@
 				<div class="row">
 					<div class="col m8">
 						<div class="row">
-							<div class="col m3">
+							<div class="col s4 m3">
 								<div class="profile-picture">
 									{!! Html::image(asset('images/default.png'), $currentUser->fullName, ['class' => 'img-responsive']) !!}
 								</div>
 							</div>
 
-							<div class="col m9">
+							<div class="col s8 m9">
 								<h2>{{ $currentUser->fullName }}</h2>	
 
 								<div class="row">
@@ -37,12 +37,12 @@
 
 
 				<div class="row">
-					<div class="col m12">
+					<div class="col s12 m12">
 						<div class="btn-group">
-							<a href="#" class="btn waves-effect waves-light" data-toggle="modal" data-target="#AddSkillModal"><i class="fa fa-check"></i> Add your skills</a>
-							<a href="#" class="btn waves-effect waves-light"><i class="fa fa-check"></i> Add a photo</a>
-							<a href="#" class="btn waves-effect waves-light" data-toggle="modal" data-target="#AddExperienceModal"><i class="fa fa-check"></i> Add employment history</a>
-							<a href="#" class="btn waves-effect waves-light" data-toggle="modal" data-target="#AddEducationsModal"><i class="fa fa-check"></i> Add education</a>			
+							<button class="btn waves-effect waves-light col s6 m3 modal-trigger" data-target="AddSkillModal"><i class="fa fa-check"></i> Add your skills</button>
+							<button class="btn waves-effect waves-light col s6 m3"><i class="fa fa-check"></i> Add a photo</button>
+							<button class="btn waves-effect waves-light col s6 m3 modal-trigger" data-target="AddExperienceModal"><i class="fa fa-check"></i> Add employment history</button>
+							<button class="btn waves-effect waves-light col s6 m3 modal-trigger" data-target="AddEducationsModal"><i class="fa fa-check"></i> Add education</button>			
 						</div>
 					</div>
 				</div>	
@@ -56,15 +56,20 @@
 								<div class="card">
 									<div class="card-content">
 										<span class="card-title black-text">My Skills</span>
-										<ul class="skills">
-											@foreach( $currentUser->skills as $skill )
-												<li>{{ $skill->title }}
-													{!! Form::open(['method' => 'DELETE', 'route' => ['profile.skills.destroy', $skill->id], 'class' => 'right']) !!}
-														<button type="submit" class="btn waves-effect waves-light btn-flat"><i class="tiny material-icons">delete</i></button>
-													{!! Form::close() !!}
-												</li>
-											@endforeach
-										</ul>										
+										
+										@foreach( $currentUser->skills as $skill )
+										<div class="row">
+											<div class="col s11 m9">
+												{{ $skill->title }}
+											</div>
+
+											<div class="col s1 m3">
+												{!! Form::open(['method' => 'DELETE', 'route' => ['profile.skills.destroy', $skill->id]]) !!}
+													<button type="submit" class="btn waves-effect waves-light btn-flat"><i class="tiny material-icons">delete</i></button>
+												{!! Form::close() !!}
+											</div>
+										</div>
+										@endforeach									
 									</div>	
 
 									<div class="card-action">
@@ -82,8 +87,8 @@
 												<li>
 													<div class="left">
 														<p>
-															<i class="tiny material-icons">info_outline</i> <strong>{{ $experience->companyName }}</strong><br />
-															{!! Html::link($experience->website, $experience->website, ['target' => '_blank']) !!}<br />
+															<i class="tiny material-icons">info_outline</i>
+															<strong>{!! Html::link($experience->website, $experience->companyName, ['target' => '_blank']) !!}</strong><br />
 															<span class="grey-text"><i class="tiny material-icons">perm_contact_calendar</i> Dec. 1, 2011 - Dec. 14, 2012</span>
 														</p>
 													</div>
@@ -126,7 +131,7 @@
 									</div>
 
 									<div class="card-action">
-									<button type="button" class="btn waves-effect waves-light btn" data-toggle="modal" data-target="#AddEducationsModal">Add</button>
+									<button type="button" class="btn waves-effect waves-light btn modal-trigger" data-target="AddEducationsModal">Add</button>
 									</div>
 								</div>
 							</div>														

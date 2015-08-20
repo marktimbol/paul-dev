@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\AddWorkExperienceRequest;
 use App\Repositories\Experiences\WorkExperienceRepositoryInterface;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class WorkExperiencesController extends Controller
@@ -43,10 +43,10 @@ class WorkExperiencesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  AddWorkExperienceRequest  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(AddWorkExperienceRequest $request)
     {
         $data = [
             'companyName'   => $request->companyName,
@@ -56,9 +56,7 @@ class WorkExperiencesController extends Controller
             'description'   => $request->description,
             'isPresent'     => $request->has('isPresent')
             ];
-
-        dd($data);
-
+            
         $this->workExperience->store($this->currentUser, $data);
 
         flash()->success('Yey!', 'New experience has been added.');

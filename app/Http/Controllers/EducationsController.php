@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Education;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Illuminate\Http\Request;
+use App\Http\Requests\AddEducationRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Educations\EducationRepositoryInterface;
 
@@ -45,10 +44,10 @@ class EducationsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  AddEducationRequest  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(AddEducationRequest $request)
     {
         $data = [
             'degree'            => $request->degree,
