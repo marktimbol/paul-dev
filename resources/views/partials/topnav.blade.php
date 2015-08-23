@@ -12,13 +12,12 @@
 					<li><a href="#">Browse Jobs</a></li>
 					<li><a href="#">Blog</a></li>
 					@if( Auth::check() )
-					<li>
-						<a href="#" class="dropdown-button" data-activates="userProfileDropdown">{{ $currentUser->fullName }} <span class="caret"></span></a>
-					</li>				
-					
+						<li>
+							<a href="#" class="dropdown-button" data-activates="userProfileDropdown">{{ Auth::user()->fullName }} <span class="caret"></span></a>
+						</li>				
 					@else
-					<li><a href="/auth/register">Sign up</a></li>
-					<li><a href="/auth/login">Log in</a></li>				
+						<li><a href="/auth/register">Sign up</a></li>
+						<li><a href="/auth/login">Log in</a></li>				
 					@endif
 				</ul>
 			</div>

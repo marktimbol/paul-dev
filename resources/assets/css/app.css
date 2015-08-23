@@ -4,8 +4,8 @@
 .img-responsive {
   width: 100%; }
 
-.input-field {
-  margin-bottom: 20px; }
+.text-italic {
+  font-style: italic; }
 
 .page1 {
   background: url("../../images/people.jpg") center bottom no-repeat;
@@ -26,8 +26,20 @@
 
 .profile-overview .card ul {
   overflow: hidden; }
+  .profile-overview .card ul.skills li {
+    float: left;
+    margin: 2px; }
+    .profile-overview .card ul.skills li button.modal-trigger {
+      color: #333;
+      border: 1px solid #ddd;
+      background: #fefefe;
+      padding: 3px 5px;
+      border-radius: 3px; }
   .profile-overview .card ul.workExperiences li {
     overflow: hidden;
     margin-bottom: 15px; }
+
+.modal .modal-footer button {
+  margin: 0px 5px !important; }
 
 /*# sourceMappingURL=app.css.map */

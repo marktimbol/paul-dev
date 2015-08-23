@@ -49,8 +49,9 @@
 						</div>
 
 						<div class="input-field col s12 m12">
+							
+							{!! Form::select('country', $countries->all(), null, ['class' => 'browser-default']) !!}
 							{!! Form::label('country') !!}
-							{!! Form::select('country', $countries->all(), null, ['class' => 'validate']) !!}
 						</div>
 
 						<div class="input-field col s12 m12">

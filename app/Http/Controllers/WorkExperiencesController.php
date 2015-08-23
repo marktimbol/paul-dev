@@ -51,8 +51,8 @@ class WorkExperiencesController extends Controller
         $data = [
             'companyName'   => $request->companyName,
             'website'       => $request->website,
-            'startDate'     => $request->startDate,
-            'endDate'       => $request->endDate,
+            'startDate'     => $request->startDate_submit,
+            'endDate'       => $request->endDate_submit,
             'description'   => $request->description,
             'isPresent'     => $request->has('isPresent')
             ];
@@ -93,9 +93,22 @@ class WorkExperiencesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(AddWorkExperienceRequest $request, $id)
     {
-        //
+        //dd($request->all());
+        $data = [
+            'companyName'   => $request->companyName,
+            'website'       => $request->website,
+            'startDate'     => $request->startDate_submit,
+            'endDate'       => $request->endDate_submit,
+            'isPresent'     => $request->has('isPresent')
+            ];
+
+        $this->workExperience->update($id, $data);
+
+        flash()->success('Yey!', 'Employment has been updated.');
+
+        return redirect()->route('profile.index');  
     }
 
     /**

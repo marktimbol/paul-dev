@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
+    public function user()
+    {
+        return Auth::user();
+    }
+    
     public function getRegister()
     {
     	return view('pages.register');

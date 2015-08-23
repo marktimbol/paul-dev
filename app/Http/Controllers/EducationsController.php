@@ -92,9 +92,20 @@ class EducationsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(AddEducationRequest $request, $id)
     {
-        //
+        $data = [
+            'degree'            => $request->degree,
+            'specialization'    => $request->specialization,
+            'institute'         => $request->institute,
+            'yearOfCompletion'  => $request->yearOfCompletion
+            ];
+
+        $this->education->update($id, $data);
+
+        flash()->success('Yey!', 'Education has been added.');
+
+        return redirect()->route('profile.index');  
     }
 
     /**

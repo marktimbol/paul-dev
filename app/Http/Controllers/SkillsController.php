@@ -90,9 +90,19 @@ class SkillsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(AddSkillRequest $request, $id)
     {
+        $data = [
+            'title' => $request->title,
+            'years_of_experience' => $request->years_of_experience,
+            'description'   => $request->description
+            ];
 
+        $this->skill->update($id, $data);
+
+        flash()->success('Yey!', 'Skill has been added.');
+
+        return redirect()->route('profile.index');  
     }
 
     /**

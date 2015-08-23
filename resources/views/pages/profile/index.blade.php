@@ -8,7 +8,9 @@
 
 		@include('partials.warnings')
 
-		<div class="row profile-overview">
+		<div class="row profile-overview" id="profileOverview">
+			
+
 			<div class="col m12">
 				<div class="row">
 					<div class="col m8">
@@ -24,10 +26,13 @@
 
 								<div class="row">
 									<div class="input-field col m12">
-										{!! Form::open() !!}
-											{!! Form::textarea('bio', null, ['class' => 'materialize-textarea', 'placeholder' => 'You have no bio right now. In a few words, what makes you YOU?', 'rows' => 4]) !!}
-											{!! Form::label('bio') !!}
-										{!! Form::close() !!}	
+										<form method="POST" v-on="submit: updateBio">
+											{!! csrf_field() !!}
+											<input type="text" id="bio" v-model="user.bio" />
+											<label for="bio" class="active">Bio</label>
+											<button type="submit" class="btn waves-effect waves-light hide">Save</button>
+										</form>	
+																
 									</div>			
 								</div>	
 							</div>
@@ -57,19 +62,29 @@
 									<div class="card-content">
 										<span class="card-title black-text">My Skills</span>
 										
-										@foreach( $currentUser->skills as $skill )
-										<div class="row">
-											<div class="col s11 m9">
-												{{ $skill->title }}
-											</div>
-
-											<div class="col s1 m3">
-												{!! Form::open(['method' => 'DELETE', 'route' => ['profile.skills.destroy', $skill->id]]) !!}
-													<button type="submit" class="btn waves-effect waves-light btn-flat"><i class="tiny material-icons">delete</i></button>
-												{!! Form::close() !!}
-											</div>
-										</div>
-										@endforeach									
+										<ul class="skills">
+											@foreach( $currentUser->skills as $skill)
+										 		<li><button type="button" class="modal-trigger" data-target="EditSkillModal-{{$skill->id}}">{{ $skill->title }}</button>
+													<div class="modal modal-fixed-footer" id="EditSkillModal-{{$skill->id}}">
+														{!! Form::model( $skill, ['method' => 'PUT', 'route' => ['profile.skills.update', $skill->id]]) !!}
+															<div class="modal-content">
+																<h4>Edit <span class="text-italic">{{ $skill->title }}</span></h4>
+																@include('partials.errors')
+																@include('pages.profile.skills._form')
+															</div>
+															<div class="modal-footer">
+																<button type="submit" class="btn waves-effect waves-green">Update Skill</button>&nbsp;															
+															</div>
+														{!! Form::close() !!}  
+														<div class="modal-footer delete-btn">
+															{!! Form::open(['method' => 'DELETE', 'route' => ['profile.skills.destroy', $skill->id], 'class' => 'left']) !!}
+																<button type="submit" class="btn red waves-effect waves-light"><i class="tiny material-icons">delete</i></button>
+															{!! Form::close() !!}
+														</div>															
+													</div>
+												</li>						
+											@endforeach
+										</ul>					
 									</div>	
 
 									<div class="card-action">
@@ -88,14 +103,29 @@
 													<div class="left">
 														<p>
 															<i class="tiny material-icons">info_outline</i>
-															<strong>{!! Html::link($experience->website, $experience->companyName, ['target' => '_blank']) !!}</strong><br />
-															<span class="grey-text"><i class="tiny material-icons">perm_contact_calendar</i> Dec. 1, 2011 - Dec. 14, 2012</span>
+															<a href="#EditWorkExperienceModal-{{$experience->id}}" class="modal-trigger"><strong>{{ $experience->companyName }}</strong></a><br />
+															<span class="grey-text"><i class="tiny material-icons">perm_contact_calendar</i> {{ $experience->startDate }} - {{ $experience->endDate }}</span>
 														</p>
 													</div>
 
-													{!! Form::open(['method' => 'DELETE', 'route' => ['profile.work-experiences.destroy', $experience->id], 'class' => 'right']) !!}
-														<button type="submit" class="btn waves-effect waves-light btn-flat"><i class="tiny material-icons">delete</i></button>
-													{!! Form::close() !!}
+													<div class="modal modal-fixed-footer" id="EditWorkExperienceModal-{{$experience->id}}">
+														{!! Form::model( $experience, ['method' => 'PUT', 'route' => ['profile.work-experiences.update', $experience->id]]) !!}
+															<div class="modal-content">
+																<h4>Edit Experience</h4>
+																@include('partials.errors')
+																@include('pages.profile.work-experiences._form')
+															</div>
+															<div class="modal-footer">
+																<button type="submit" class="btn waves-effect waves-green">Update Skill</button>&nbsp;															
+															</div>
+														{!! Form::close() !!}  
+														
+														<div class="modal-footer delete-btn">
+															{!! Form::open(['method' => 'DELETE', 'route' => ['profile.work-experiences.destroy', $experience->id], 'class' => 'left']) !!}
+																<button type="submit" class="btn red waves-effect waves-light"><i class="tiny material-icons">delete</i></button>
+															{!! Form::close() !!}
+														</div>															
+													</div>													
 												</li>
 											@endforeach
 										</ul>
@@ -116,15 +146,30 @@
 												<li>
 													<div class="left">
 														<p>
-															<i class="tiny material-icons">info_outline</i> <strong>{{ $education->degree }}</strong><br />
+															<i class="tiny material-icons">info_outline</i><a href="#EditEducationModal-{{$education->id}}" class="modal-trigger"><strong>{{ $education->degree }}</strong></a><br />
 															<span class="grey-text">in</span> {{ $education->specialization}}<br />
 															<i class="tiny material-icons">room</i> {{ $education->institute }}, {{ $education->yearOfCompletion }}
 														</p>
 													</div>
 
-													{!! Form::open(['method' => 'DELETE', 'route' => ['profile.educations.destroy', $education->id], 'class' => 'right']) !!}
-														<button type="submit" class="btn waves-effect waves-light btn-flat"><i class="tiny material-icons">delete</i></button>
-													{!! Form::close() !!}
+													<div class="modal modal-fixed-footer" id="EditEducationModal-{{$education->id}}">
+														{!! Form::model( $education, ['method' => 'PUT', 'route' => ['profile.educations.update', $education->id]]) !!}
+															<div class="modal-content">
+																<h4>Edit Education</h4>
+																@include('partials.errors')
+																@include('pages.profile.educations._form')
+															</div>
+															<div class="modal-footer">
+																<button type="submit" class="btn waves-effect waves-green">Update Education</button>&nbsp;															
+															</div>
+														{!! Form::close() !!}  
+														
+														<div class="modal-footer delete-btn">
+															{!! Form::open(['method' => 'DELETE', 'route' => ['profile.educations.destroy', $education->id], 'class' => 'left']) !!}
+																<button type="submit" class="btn red waves-effect waves-light"><i class="tiny material-icons">delete</i></button>
+															{!! Form::close() !!}
+														</div>															
+													</div>
 												</li>
 											@endforeach
 										</ul>										

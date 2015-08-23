@@ -9,6 +9,8 @@ interface EducationRepositoryInterface
 
 	public function store(User $user, $data);
 	
+	public function update($id, $date);
+	
 	public function destroy($id);
 
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class WorkExperience extends Model
@@ -15,6 +16,17 @@ class WorkExperience extends Model
     	'isPresent'
     ];
 
+    protected $dates = ['startDate', 'endDate'];
+
+    public function getStartDateAttribute($date)
+    {
+        return $attributes['startDate'] = Carbon::parse($date)->toFormattedDateString();
+    }
+
+    public function getEndDateAttribute($date)
+    {
+        return $attributes['endDate'] = Carbon::parse($date)->toFormattedDateString();
+    }    
 
     public function user()
     {

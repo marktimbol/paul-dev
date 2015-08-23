@@ -26,6 +26,8 @@ elixir(function(mix) {
            '../bower_components/materialize/dist/js/materialize.min.js',
     	   //'../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
            '../bower_components/sweetalert/dist/sweetalert.min.js',
+           '../bower_components/vue/dist/vue.js',
+           '../bower_components/vue-resource/dist/vue-resource.js',
             'app.js'
     	], 'public/js/all.js')
 

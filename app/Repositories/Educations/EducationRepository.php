@@ -13,6 +13,19 @@ class EducationRepository implements EducationRepositoryInterface
 	{
 		return $user->educations()->create($data);
 	}
+
+	public function update($id, $data)
+	{
+		$education = Education::findOrFail($id);
+		$education->degree = $data['degree'];
+		$education->specialization = $data['specialization'];
+		$education->institute = $data['institute'];
+		$education->yearOfCompletion = $data['yearOfCompletion'];
+	
+		$education->save();
+
+		return $education;
+	}
 	
 	public function destroy($id)
 	{

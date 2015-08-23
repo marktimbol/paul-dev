@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Repositories\Users\UserRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,11 +12,13 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
 	protected $currentUser;
+    protected $userRepository;
 
-	public function __construct()
+	public function __construct(UserRepositoryInterface $user)
 	{
 		$this->middleware('auth');
 		$this->currentUser = Auth::user();
+        $this->userRepository = $user;
 	}
 
     public function index()
@@ -51,8 +54,18 @@ class ProfileController extends Controller
         return view('pages.profile.edit', compact('currentUser'));
     }
 
-    public function update()
+    public function update($data)
     {
+
+    }
+
+    public function updateBio(Request $request)
+    {      
+        $data = [
+            'bio'  => $request->bio
+        ];
+
+        $this->userRepository->updateBio($data);
 
     }
 

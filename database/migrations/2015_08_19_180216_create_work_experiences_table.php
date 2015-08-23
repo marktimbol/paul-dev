@@ -17,8 +17,8 @@ class CreateWorkExperiencesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('companyName');
             $table->string('website');
-            $table->dateTime('startDate');
-            $table->dateTime('endDate');
+            $table->datetime('startDate');
+            $table->datetime('endDate');
             $table->integer('isPresent',0);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();         

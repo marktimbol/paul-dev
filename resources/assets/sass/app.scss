@@ -15,9 +15,12 @@ body {
 }
 
 .input-field {
-	margin-bottom: 20px;
+	//margin-bottom: 20px;
 }
 
+.text-italic {
+	font-style: italic;
+}
 .page1 {
 	background: url('../../images/people.jpg') center bottom no-repeat;
 	padding: 50px 0 400px 0;
@@ -55,12 +58,34 @@ body {
 				    //padding: 3px 8px;
 				}
 			}
+			&.skills {
+				li {
+					float: left;
+					margin: 2px;
+					button.modal-trigger {
+						color: #333;
+						border: 1px solid #ddd;
+						background: #fefefe;
+						padding: 3px 5px;
+						border-radius: 3px;
+					}
+				}	
+			}			
 			&.workExperiences {
 				li {
 					overflow: hidden;
 					margin-bottom: 15px;
 				}
 			}
+
+		}
+	}
+}
+
+.modal {
+	.modal-footer {
+		button {
+			margin: 0px 5px !important;
 		}
 	}
 }
