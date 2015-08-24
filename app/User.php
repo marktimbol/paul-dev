@@ -46,7 +46,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function skills()
     {
-        return $this->hasMany('App\Skill');
+        return $this->hasMany('App\UserSkill');
     }
 
     public function workExperiences()
@@ -57,5 +57,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function educations()
     {
         return $this->hasMany('App\Education');
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany('App\Job');
     }
 }

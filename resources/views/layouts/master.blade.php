@@ -16,5 +16,7 @@
 	<script src="{{ elixir('js/all.js') }}"></script>
 
 	@include('flash')
+
+	@yield('footer')
 </body>
 </html>

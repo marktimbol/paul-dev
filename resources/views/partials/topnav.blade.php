@@ -12,6 +12,7 @@
 					<li><a href="#">Browse Jobs</a></li>
 					<li><a href="#">Blog</a></li>
 					@if( Auth::check() )
+						<li><a href="{{ route('profile.jobs.create') }}" class="btn tiny blue waves-effect waves-light">Post a Job</a></li>
 						<li>
 							<a href="#" class="dropdown-button" data-activates="userProfileDropdown">{{ Auth::user()->fullName }} <span class="caret"></span></a>
 						</li>				

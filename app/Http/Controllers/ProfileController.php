@@ -8,11 +8,19 @@ use App\Repositories\Users\UserRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
 	protected $currentUser;
     protected $userRepository;
+
+    protected $photoDir = 'images/users/';
+    protected $picture_name;
+    protected $picture_path;
+    protected $thumbnail_path;
+
 
 	public function __construct(UserRepositoryInterface $user)
 	{
@@ -67,6 +75,37 @@ class ProfileController extends Controller
 
         $this->userRepository->updateBio($data);
 
+    }
+
+    public function updatePicture(Request $request)
+    {
+
+        $this->validate($request, [
+            'photo' => 'required|mimes:jpg,jpeg,png,bmp'
+        ]);
+
+        $file = $request->file('photo');
+
+        $fileName = sprintf('%s_%s', time(), $request->file('photo')->getClientOriginalName());
+
+        $image = Image::make($file->getRealPath());
+
+        File::exists(userPhotosPath()) or File::makeDirectory(userPhotosPath());
+
+        $image->fit(250)
+              ->save(userPhotosPath() . $fileName);               
+
+        /**
+         * Save the profile picture into 'users' table
+         */
+        $this->userRepository->updateProfilePicture($fileName);
+    }
+
+    protected function makeThumbnail()
+    {
+        Image::make($this->picture_name)
+                ->fit(250)
+                ->save($this->thumbnail_path);    
     }
 
     public function destroy()

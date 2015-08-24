@@ -16,6 +16,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserHasRegistered' => [
             'App\Listeners\SendWelcomeEmail',
         ],
+
+        'App\Events\UserHasPostedANewJob' => [
+            'App\Listeners\SendNewJobInformationToFreelancers',
+        ],
     ];
 
     /**

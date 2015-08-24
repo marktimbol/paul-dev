@@ -17,6 +17,7 @@ elixir(function(mix) {
     	.styles([
             '../bower_components/sweetalert/dist/sweetalert.css',
             '../bower_components/materialize/dist/css/materialize.css',
+            '../bower_components/dropzone/dist/dropzone.css',
             '../bower_components/components-font-awesome/css/font-awesome.css',
     		'app.css'
     	], 'public/css/all.css')
@@ -26,13 +27,19 @@ elixir(function(mix) {
            '../bower_components/materialize/dist/js/materialize.min.js',
     	   //'../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
            '../bower_components/sweetalert/dist/sweetalert.min.js',
+           '../bower_components/dropzone/dist/dropzone.js',
            '../bower_components/vue/dist/vue.js',
            '../bower_components/vue-resource/dist/vue-resource.js',
             'app.js'
     	], 'public/js/all.js')
 
+        .scripts([
+            'vue-profile.js'
+            ], 'public/js/profile.js')
+
     	.version([
     		'css/all.css',
-    		'js/all.js'
+    		'js/all.js',
+            'js/profile.js'
     	]);
 });

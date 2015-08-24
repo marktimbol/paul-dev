@@ -4,8 +4,14 @@
 .img-responsive {
   width: 100%; }
 
+.input-field {
+  margin-bottom: 20px; }
+
 .text-italic {
   font-style: italic; }
+
+.btn.btn-full {
+  width: 100%; }
 
 .page1 {
   background: url("../../images/people.jpg") center bottom no-repeat;
@@ -38,6 +44,13 @@
   .profile-overview .card ul.workExperiences li {
     overflow: hidden;
     margin-bottom: 15px; }
+
+.dropzone {
+  border: 1px dashed #ddd !important;
+  margin-top: 20px; }
+
+.modal .input-field {
+  margin-bottom: 0px !important; }
 
 .modal .modal-footer button {
   margin: 0px 5px !important; }

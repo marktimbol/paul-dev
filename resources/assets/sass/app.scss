@@ -15,11 +15,17 @@ body {
 }
 
 .input-field {
-	//margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .text-italic {
 	font-style: italic;
+}
+
+.btn {
+	&.btn-full {
+		width: 100%;
+	}
 }
 .page1 {
 	background: url('../../images/people.jpg') center bottom no-repeat;
@@ -82,7 +88,17 @@ body {
 	}
 }
 
+.dropzone {
+	border: 1px dashed #ddd !important;
+	margin-top: 20px;
+}
+
 .modal {
+
+	.input-field {
+		margin-bottom: 0px !important;
+	}
+
 	.modal-footer {
 		button {
 			margin: 0px 5px !important;

@@ -16,13 +16,15 @@ Route::get('auth/user', 'AuthController@user');
 Route::group([], function(){
 	
 	Route::put('profile/update-bio', ['as' => 'profile.updateBio', 'uses' => 'ProfileController@updateBio']);
+	Route::put('profile/update-picture', ['as' => 'profile.updatePicture', 'uses' => 'ProfileController@updatePicture']);
 
 	Route::resource('profile', 'ProfileController');
 
 	Route::group(['prefix' => 'profile'], function(){
-		Route::resource('skills', 'SkillsController');
+		Route::resource('skills', 'UserSkillsController');
 		Route::resource('work-experiences', 'WorkExperiencesController');
 		Route::resource('educations', 'EducationsController');
+		Route::resource('jobs', 'JobsController');
 	});
 });
 
