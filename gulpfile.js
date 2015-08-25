@@ -37,9 +37,14 @@ elixir(function(mix) {
             'vue-profile.js'
             ], 'public/js/profile.js')
 
+        .scripts([
+            'vue-skill-categories.js'
+            ], 'public/js/skill-categories.js')
+
     	.version([
     		'css/all.css',
     		'js/all.js',
-            'js/profile.js'
+            'js/profile.js',
+            'js/skill-categories.js'
     	]);
 });

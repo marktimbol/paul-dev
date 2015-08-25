@@ -55,4 +55,21 @@
 .modal .modal-footer button {
   margin: 0px 5px !important; }
 
+.collection span.badge {
+  margin-top: -30px; }
+
+.card-panel.errors {
+  padding: 5px 20px; }
+
+table.striped {
+  border: 1px solid #ddd; }
+
+table tr td div.actions {
+  display: none; }
+  table tr td div.actions a {
+    font-size: 12px; }
+
+table tr td:hover div.actions {
+  display: block; }
+
 /*# sourceMappingURL=app.css.map */

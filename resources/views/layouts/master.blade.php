@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	@include('partials.topnav')
+	@include('partials._topnav')
 
 	@yield('content')
 

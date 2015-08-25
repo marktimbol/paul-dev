@@ -9,7 +9,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image;
+use Image;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ProfileController extends Controller
 {
@@ -79,33 +80,30 @@ class ProfileController extends Controller
 
     public function updatePicture(Request $request)
     {
-
         $this->validate($request, [
-            'photo' => 'required|mimes:jpg,jpeg,png,bmp'
+            'photo' => 'required|mimes:jpg,jpeg,png,bmp|max:2000'
         ]);
 
-        $file = $request->file('photo');
-
-        $fileName = sprintf('%s_%s', time(), $request->file('photo')->getClientOriginalName());
-
-        $image = Image::make($file->getRealPath());
+        $photo = $request->file('photo');
 
         File::exists(userPhotosPath()) or File::makeDirectory(userPhotosPath());
 
-        $image->fit(250)
-              ->save(userPhotosPath() . $fileName);               
+        $fileName = $this->makeThumbnail($photo);              
 
-        /**
-         * Save the profile picture into 'users' table
-         */
         $this->userRepository->updateProfilePicture($fileName);
     }
 
-    protected function makeThumbnail()
-    {
-        Image::make($this->picture_name)
-                ->fit(250)
-                ->save($this->thumbnail_path);    
+    protected function makeThumbnail(UploadedFile $photo)
+    {   
+
+        $fileName = sprintf('%s_%s', time(), $photo->getClientOriginalName());
+
+        $image = Image::make($photo->getRealPath());
+
+        $image->fit(250)
+              ->save(userPhotosPath() . $fileName);  
+
+        return $fileName;
     }
 
     public function destroy()

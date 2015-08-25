@@ -13,8 +13,9 @@ $(document).ready(function(){
 
 	Dropzone.options.UpdateProfilePictureForm = {
 		paramName: 'photo',
-		masFilesize: 3,
+		masFilesize: 2,
 		acceptedFiles: '.jpg, .jpeg, .png, .bmp',
+		uploadMultiple: false,
 		dictDefaultMessage: 'Drop your profile picture here'
 	}
 

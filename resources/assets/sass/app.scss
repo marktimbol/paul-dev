@@ -105,3 +105,37 @@ body {
 		}
 	}
 }
+
+.collection {
+	span.badge {
+		margin-top: -30px;
+	}
+}
+
+.card-panel {
+	&.errors {
+		padding: 5px 20px;
+	}
+}
+
+table {
+	&.striped {
+		border: 1px solid #ddd;
+	}
+
+	tr {
+		td {
+			div.actions {
+				display: none;
+				a {
+					font-size: 12px;
+				}
+			}
+			&:hover {
+				div.actions {
+					display: block;
+				}
+			}
+		}
+	}
+}
